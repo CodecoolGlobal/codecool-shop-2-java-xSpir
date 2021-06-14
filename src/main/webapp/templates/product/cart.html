@@ -1,11 +1,12 @@
-<!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="hu">
 <head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
+    <meta charset="UTF-8">
+
+    <meta name="author" content="Farkas Timót" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Codecool Shop</title>
+    <title>Your Cart</title>
 
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
@@ -18,7 +19,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
@@ -26,18 +27,16 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" />
 </head>
-
 <body>
-
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div>
+<div th:replace="header.html :: copy"></div>
 
 <div class="container">
     <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+        <strong>Your Cart</strong>
     </div>
+    <br>
 
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
@@ -52,12 +51,21 @@
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" th:attr="href='/cart?add='+ ${prod.id}">Add to cart</a>
+                        <a class="btn btn-success" th:attr="href='/cart?add='+ ${prod.id}">Add one more to cart</a>
+                        <a class="btn btn-danger" th:attr="href='/cart?rm='+ ${prod.id}">Remove</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <br>
+    <div class="card">
+        <a class="btn btn-success" href="/">Keep shopping</a>
+        <br>
+        <a class="btn btn-success" href="/checkout">Checkout</a>
+    </div>
+    <br>
 
 </div>
 
