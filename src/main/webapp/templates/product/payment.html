@@ -46,9 +46,11 @@
             <a href="/">Back to store</a>
         </div>
         <div class="items">
-            <div th:each="prod,iterStat : ${products}">
-                <div class="item">
-                    <img th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+            <div>
+                <div class="total" th:text="${total}"></div>
+                <div class="item" th:each="prod,iterStat : ${products}">
+                    <img class="smol" th:attr="src='/static/img/product_' + *{prod.id} + '.jpg'" alt=""/>
+                    <p th:text="${prod.getPrice()}">Product price</p>
                 </div>
             </div>
         </div>

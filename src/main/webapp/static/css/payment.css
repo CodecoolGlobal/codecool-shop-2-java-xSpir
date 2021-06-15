@@ -54,3 +54,7 @@ body {
     position: absolute;
     left: 41%;
 }
+.smol {
+    width: 150px;
+    height: auto;
+}

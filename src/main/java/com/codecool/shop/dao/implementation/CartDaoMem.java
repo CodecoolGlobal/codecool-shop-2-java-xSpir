@@ -27,6 +27,11 @@ public class CartDaoMem implements CartDao {
         return instance;
     }
 
+    public String getTotalPrice() {
+        return "Total price: " + data.stream().map(Product::getDefaultPrice).reduce(Float.valueOf(0), Float::sum).toString() + " " +
+                data.get(0).getDefaultCurrency();
+    }
+
     @Override
     public void add(Product product) {
         data.add(product);
