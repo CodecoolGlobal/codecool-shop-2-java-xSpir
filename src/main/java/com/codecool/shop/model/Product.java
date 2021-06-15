@@ -1,5 +1,8 @@
 package com.codecool.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Currency;
 
 public class Product extends BaseModel {
@@ -10,9 +13,16 @@ public class Product extends BaseModel {
     private Supplier supplier;
 
 
-    public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
-        super(name, description);
-        this.setPrice(defaultPrice, currencyString);
+
+//    @JsonCreator
+//    public Product(@JsonProperty("name") String name,@JsonProperty("description") String description){
+//        super(name,description);
+//    }
+    @JsonCreator
+    public Product(@JsonProperty("id") int id,@JsonProperty("name") String name,@JsonProperty("defaultPrice") float defaultPrice,
+                   @JsonProperty("currencyString") String currencyString,@JsonProperty("description") String description,
+                   @JsonProperty("productCategory") ProductCategory productCategory,@JsonProperty("supplier") Supplier supplier) {
+        super(id, name, description);
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
