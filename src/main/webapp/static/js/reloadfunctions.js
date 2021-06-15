@@ -1,9 +1,26 @@
 function sendAjax() {
     fetch('/testServlet')
         .then(response => response.json())
-        .then(data => console.log(data));
-}
+        .then(data => products(data));
 
+    function products(data) {
+        let tbody = document.querySelector('#tbody');
+        tbody.innerHTML = '';
+        let contentText = '';
+        for (let genre of data) {
+            contentText +=
+                `
+      <tr>
+        <td>${genre.name}</td>
+        <td count="${genre.count}">${genre.count}</td>
+      </tr>`
+        }
+
+        tbody.insertAdjacentHTML("beforeend", contentText);
+
+
+    }
+}
 //     // get inputs
 //     var product = new Object();
 //     product.id = $('#id').val();

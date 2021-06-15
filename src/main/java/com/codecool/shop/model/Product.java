@@ -8,9 +8,9 @@ import java.util.Currency;
 public class Product extends BaseModel {
 
     private float defaultPrice;
-    private Currency defaultCurrency;
-    private ProductCategory productCategory;
-    private Supplier supplier;
+    private transient Currency defaultCurrency;
+    private transient ProductCategory productCategory;
+    private transient Supplier supplier;
 
 
 
