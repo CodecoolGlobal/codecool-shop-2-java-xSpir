@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <title>Codecool Shop Payment</title>
+
+    <!-- Bootstrap components -->
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!--Latest compiled and minified Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- End of Bootstrap components -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/payment.css"/>
+    <script src="/static/payment.js" defer></script>
+</head>
+<body>
+
+<div class="jumbotron text-center" style="background-color: #428bca">
+    <h1 style="color: white">Pay top $$ for us!</h1>
+</div>
+
+<div class="payment-container">
+    <div class="shopping-cart">
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <a href="/">Back to store</a>
+        </div>
+        <div class="items">
+            <div th:each="prod,iterStat : ${products}">
+                <div class="item">
+                    <img th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout">
+        <div class="email">
+            <h2>Email</h2>
+            <input type="email" required placeholder="Your email address" id="user"><br>
+            <a href="#" id="email">Save</a>
+        </div>
+        <div class="payment-info">
+            <h2>Payment information</h2><br>
+            <input type="radio" id="card" checked name="payment">
+            <label for="card">Credit or debit card</label>
+            <img id="credit" src="/static/img/creditcard.jpg" alt=""><br><br>
+
+            <input type="radio" id="paypal" name="payment">
+            <label for="paypal">Paypal</label>
+            <img id="pal" src="/static/img/paypal.jpg" alt="">
+        </div>
+        <div class="submit">
+            <button id="pay" class="btn btn-outline-primary">Pay with</button>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="footer.html :: copy" style="background-color: #428bca"></div>
+</body>
+</html>
