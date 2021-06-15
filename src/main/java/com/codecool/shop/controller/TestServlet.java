@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "testServlet", urlPatterns = "/testServlet")
-class TestServlet extends HttpServlet {
+public class TestServlet extends HttpServlet {
 
     private Gson gson = new Gson();
 
