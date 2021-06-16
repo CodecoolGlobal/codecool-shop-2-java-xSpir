@@ -1,27 +1,90 @@
+$("button").click(function() {
+    var fired_button = $(this).val();
+    alert(fired_button);
+});
+
+
+
 function sendAjax() {
     fetch('/testServlet')
         .then(response => response.json())
         .then(data => products(data));
 
     function products(data) {
-        let tbody = document.querySelector('#tbody');
+        console.log(data);
+        let tbody = document.querySelector('#reloaded-products');
         tbody.innerHTML = '';
-        let contentText = '';
-        for (let genre of data) {
+        let contentText = '<div class="card">\n' +
+            '        <strong>Products//todo</strong>' +
+            '    </div>'      +
+            '<div id="products" class="row">'
+        for (let product of data) {
+            let source = "/static/img/product_" +product.id + ".jpg"
             contentText +=
                 `
-      <tr>
-        <td>${genre.name}</td>
-        <td count="${genre.count}">${genre.count}</td>
-      </tr>`
+            <div className="col col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+                <img class="" src=${source}>
+
+                <div class="card-header">
+                    <h4 class="card-title">${product.name}</h4>
+                    <p class="card-text">${product.description}</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <p class="lead">${product.defaultPrice} ${product.defaultCurrency}</p>
+                    </div>
+                    <div class="card-text">
+                        <a class="btn btn-success" href='/cart?add='+ ${product.id}">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+`
         }
 
-        tbody.insertAdjacentHTML("beforeend", contentText);
+        contentText += '</div>   '
 
+        tbody.insertAdjacentHTML("afterbegin", contentText);
+        // "beforebegin" | "afterbegin" | "beforeend" | "afterend";
 
     }
 }
-//     // get inputs
+
+// <div className="col col-sm-12 col-md-6 col-lg-4">
+//     <div className="card">
+//         <img className="" src="/static/img/product_1.jpg"/>
+//
+//         <div className="card-header">
+//             <h4 className="card-title">${product.name}</h4>
+//             <p className="card-text">${product.description}</p>
+//         </div>
+//         <div className="card-body">
+//             <div className="card-text">
+//                 <p className="lead">${product.defaultPrice}</p>
+//             </div>
+//             <div className="card-text">
+//                 <a className="btn btn-success" href='/cart?add='+ ${product.id}">Add to cart</a>
+//                     </div>
+//                 </div>
+//             </div>
+//            </div>
+//          </div>
+//          </div>
+
+// <td>${product.supplier}</td>
+// <td count="${product.description}">${product.description}</td>
+
+// <tr>
+//     <td>${product.name}</td>
+//     <td>${product.id}</td>
+//     <td>${product.description}</td>
+//     <td>${product.supplier.name}</td>
+//     <td>${product.defaultPrice}</td>
+//     <td>${product.productCategory.name}</td>
+
+
+    //     // get inputs
 //     var product = new Object();
 //     product.id = $('#id').val();
 //     console.log($('#id').val())

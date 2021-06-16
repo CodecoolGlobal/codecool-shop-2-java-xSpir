@@ -35,9 +35,7 @@
 
 <body>
 
-<table id="added-articles" class="table">
 
-</table>
 <p>
     <button class="btn btn-primary"
             type="button" onclick="sendAjax()">Add</button>
@@ -46,17 +44,25 @@
     <h1>Codecool Shop</h1>
 </div>
 <div class="col col-sm-12 col-md-6 col-lg-4" th:each="category : ${categories}">
-<span><a class="btn btn-category" th:attr="href='/orderBy='+ ${category.name}" th:text="${category.name}">Category name</a></span>
+<span><a class="btn btn-category" type="button" onClick="sendAjax()" th:text="${category.name}">Category name</a></span>
 </div>
 
 <div class="col col-sm-12 col-md-6 col-lg-4" th:each="supplier : ${suppliers}">
-    <span><a class="btn btn-category" th:attr="href='/orderBy='+ ${supplier.name}" th:text="${supplier.name}">Category name</a></span>
+    <span><a class="btn btn-category" type="button" onClick="sendAjax()" th:text="${supplier.name}">Category name</a></span>
 </div>
+<p>
+    <button class="btn btn-primary"
+            type="button" onclick="sendAjax()">Add</button>
+</p>
 
-<div class="container">
+<div class="container" id="reloaded-products">
+
+
     <div class="card">
         <strong th:text="${category.name}">Category Title</strong>
     </div>
+
+
 
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
@@ -78,7 +84,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div th:replace="footer.html :: copy"></div>

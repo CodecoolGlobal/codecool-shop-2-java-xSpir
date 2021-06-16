@@ -44,16 +44,10 @@ public class Initializer implements ServletContextListener {
         productCategoryDataStore.add(nuclearCore);
 
         //setting up products and printing it
-        productDataStore.add(new Product(1,"Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product(2,"Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product(3,"Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product(4,"Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product(5,"Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", nuclearCore, amazon));
-        productDataStore.add(new Product(6,"Premium Quality Californian Almond Nuts", 12, "USD", "Almonds originated in the warm desert areas of westerrn Asia, from which they gradually spread to the warm, dry regions of the Mediterranean basin.", eatableNuts, amazon));
+        productDataStore.add(new Product(1,"Amazon Fire", 49.9f, "USD", "Description String.", tablet, amazon));
+        productDataStore.add(new Product(2,"Lenovo IdeaPad Miix 700", 479, "USD", "Description String.", tablet, lenovo));
+        productDataStore.add(new Product(3,"Amazon Fire", 49.9f, "USD", "Description String.", tablet, amazon));
+        productDataStore.add(new Product(4,"Amazon Fire", 49.9f, "USD", "Description String.", tablet, amazon));
 
-        productDataStore.add(new Product(7,"Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product(8,"Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product(9,"Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", nuclearCore, amazon));
-        productDataStore.add(new Product(10,"Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", nuclearCore, amazon));
     }
 }
