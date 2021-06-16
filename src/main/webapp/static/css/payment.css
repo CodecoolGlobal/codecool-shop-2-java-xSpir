@@ -58,3 +58,33 @@ body {
     width: 150px;
     height: auto;
 }
+.modal-content {
+    position: fixed;
+    top: 20%;
+    right: 32%;
+    width: 35vw;
+    opacity: 0.9;
+}
+.credit-card {
+    position: relative;
+}
+
+input.inmodal {
+    position: absolute;
+    right: 10%;
+}
+input.inmodal:nth-of-type(1) {
+    position: relative;
+    left: 23%;
+    width: 100px;
+}
+input.inmodal:nth-of-type(2) {
+    position: relative;
+    left: 24%;
+    width: 100px;
+}
+input.inmodal:nth-of-type(3) {
+    position: relative;
+    left: 25%;
+    width: 100px;
+}

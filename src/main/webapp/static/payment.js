@@ -35,8 +35,17 @@ emailer.addEventListener('click', saveEmail);
 changePayButton();
 radios.forEach(radio => radio.addEventListener('change', changePayButton));
 
-// radios.forEach(radio => radio.addEventListener('change', () => {
-//     radios.forEach(radio => () => {
-//         radio.checked ? radio.checked = false : radio.checked = true;
-//     })
-// }))
+function showModal() {
+    if (this.textContent.includes('Credit')) {
+        document.querySelector('.paypal').style.display='none';
+        document.querySelector('.credit-card').style.display='block';
+        document.querySelector('.modal-body').style.display='flow-root;';
+    }
+    else {
+        document.querySelector('.credit-card').style.display='none';
+        document.querySelector('.paypal').style.display='block';
+        document.querySelector('.modal-body').style.display='flow-root;';
+    }
+}
+
+pay.addEventListener('click', showModal);

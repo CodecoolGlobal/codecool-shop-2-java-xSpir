@@ -27,14 +27,16 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PaymentDao paymentDataStore = PaymentDaoMem.getInstance();
+//        PaymentDao paymentDataStore = PaymentDaoMem.getInstance();
         CartDao cartDataStore = CartDaoMem.getInstance();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 //        context.setVariable("category", productService.getProductCategory(1));
-        context.setVariable("products", cartDataStore.getAll());
-        context.setVariable("total", ((CartDaoMem) cartDataStore).getTotalPrice());
+        if (cartDataStore.getAll() != null) {
+            context.setVariable("products", cartDataStore.getAll());
+            context.setVariable("total", ((CartDaoMem) cartDataStore).getTotalPrice());
+        }
 
 
         // // Alternative setting of the template context

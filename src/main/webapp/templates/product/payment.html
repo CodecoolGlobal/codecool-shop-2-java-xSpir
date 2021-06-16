@@ -29,7 +29,7 @@
     <!-- End of Bootstrap components -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <!--    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>-->
     <link rel="stylesheet" type="text/css" href="/static/css/payment.css"/>
     <script src="/static/payment.js" defer></script>
 </head>
@@ -37,6 +37,43 @@
 
 <div class="jumbotron text-center" style="background-color: #428bca">
     <h1 style="color: white">Pay top $$ for us!</h1>
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="text-align: center">Payment information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="credit-card">
+                    <label for="card-number1">Card number: </label>
+                    <input class="inmodal" type="text" required id="card-number1" minlength="8" maxlength="8">
+                    <input class="inmodal" type="text" required id="card-number2" minlength="8" maxlength="8">
+                    <input class="inmodal" type="text" id="card-number3" minlength="8" maxlength="8"><br>
+                    <label for="holder">Card holder: </label>
+                    <input class="inmodal" type="text" required id="holder"><br>
+                    <label for="expiry">Expiry date: </label>
+                    <input class="inmodal" type="date" required id="expiry"><br>
+                    <label for="code">Code: </label>
+                    <input class="inmodal" type="text" required id="code" minlength="3" maxlength="3">
+                </div>
+                <div class="paypal">
+                    <label for="username">Username: </label>
+                    <input class="inmodal" type="text" required id="username"><br>
+                    <label for="password">Password: </label>
+                    <input class="inmodal" type="password" required id="password"><br>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Pay</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="payment-container">
@@ -72,10 +109,9 @@
             <img id="pal" src="/static/img/paypal.jpg" alt="">
         </div>
         <div class="submit">
-            <button id="pay" class="btn btn-outline-primary">Pay with</button>
+            <button id="pay" class="btn btn-outline-primary" data-toggle="modal" data-target="#modal">Pay with</button>
         </div>
     </div>
-
 </div>
 
 <div th:replace="footer.html :: copy" style="background-color: #428bca"></div>
