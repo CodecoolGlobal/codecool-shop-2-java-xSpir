@@ -51,21 +51,22 @@
             <div class="modal-body">
                 <div class="credit-card">
                     <label for="card-number1">Card number: </label>
-                    <input class="inmodal" type="text" required id="card-number1" minlength="8" maxlength="8">
-                    <input class="inmodal" type="text" required id="card-number2" minlength="8" maxlength="8">
-                    <input class="inmodal" type="text" id="card-number3" minlength="8" maxlength="8"><br>
+                    <input class="inmodal" type="text" required id="card-number1" minlength="8" maxlength="8" size="8">
+                    <input class="inmodal" type="text" required id="card-number2" minlength="8" maxlength="8" size="8">
+                    <input class="inmodal" type="text" id="card-number3" minlength="8" maxlength="8" size="8"><br>
                     <label for="holder">Card holder: </label>
                     <input class="inmodal" type="text" required id="holder"><br>
                     <label for="expiry">Expiry date: </label>
-                    <input class="inmodal" type="date" required id="expiry"><br>
+                    <input class="inmodal" type="text" required id="expiry" minlength="1" maxlength="2" size="2" placeholder="MM"><span id="slash">/</span>
+                    <input class="inmodal" type="text" required id="year" minlength="1" maxlength="2" size="2" placeholder="YY"><br>
                     <label for="code">Code: </label>
-                    <input class="inmodal" type="text" required id="code" minlength="3" maxlength="3">
+                    <input class="inmodal" type="text" required id="code" minlength="3" maxlength="3" size="3">
                 </div>
                 <div class="paypal">
                     <label for="username">Username: </label>
-                    <input class="inmodal" type="text" required id="username"><br>
+                    <input class="inmodal" type="text" required id="username" size="20" maxlength="50"><br>
                     <label for="password">Password: </label>
-                    <input class="inmodal" type="password" required id="password"><br>
+                    <input class="inmodal" type="password" required id="password" maxlength="50"><br>
                 </div>
             </div>
             <div class="modal-footer">
@@ -83,13 +84,14 @@
             <a href="/">Back to store</a>
         </div>
         <div class="items">
-            <div>
-                <div class="total" th:text="${total}"></div>
-                <div class="item" th:each="prod,iterStat : ${products}">
-                    <img class="smol" th:attr="src='/static/img/product_' + *{prod.id} + '.jpg'" alt=""/>
-                    <p th:text="${prod.getPrice()}">Product price</p>
-                </div>
-            </div>
+            <div class="total" th:text="${total}"></div>
+            <table class="product-container">
+                <tr class="item" th:each="prod,iterStat : ${products}">
+                    <td class="product-name" th:text="${prod.getName()}">Product name</td>
+                    <td><img class="smol" th:attr="src='/static/img/product_' + *{prod.id} + '.jpg'" alt=""/></td>
+                    <td th:text="${prod.getPrice()}">Product price</td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="checkout">

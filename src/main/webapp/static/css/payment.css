@@ -17,8 +17,8 @@ body {
 }
 
 .shopping-cart {
-    display: grid;
-    grid-template-rows: 1fr 3fr;
+    display: flex;
+    flex-flow: column;
     margin: 20px;
     padding: 40px;
     line-height: 250%;
@@ -87,4 +87,25 @@ input.inmodal:nth-of-type(3) {
     position: relative;
     left: 25%;
     width: 100px;
+}
+
+input.inmodal:nth-of-type(5) {
+    position: relative;
+    left: 56%;
+}
+#slash {
+    position: relative;
+    left: 57%;
+}
+
+.total {
+    position: absolute;
+    top: 29%;
+    left: 20%;
+    font-size: x-large;
+}
+
+table {
+    padding: 20px;
+    margin: 10px;
 }
