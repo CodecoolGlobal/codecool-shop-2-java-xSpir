@@ -40,6 +40,11 @@ public class CartController extends HttpServlet {
 
             resp.sendRedirect("/cart");
         }
+        else if (req.getParameterMap().containsKey("rmf")) {
+            cartDataStore.removeFully(Integer.parseInt(req.getParameter("rmf")));
+
+            resp.sendRedirect("/cart");
+        }
         else {
             TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
             WebContext context = new WebContext(req, resp, req.getServletContext());

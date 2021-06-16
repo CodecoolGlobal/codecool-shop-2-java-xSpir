@@ -2,17 +2,15 @@ package com.codecool.shop.dao.implementation;
 
 
 import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CartDaoMem implements CartDao {
 
-    private List<Product> data = new ArrayList<>();
+    private List<CartProduct> data = new ArrayList<>();
     private static CartDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
@@ -34,25 +32,37 @@ public class CartDaoMem implements CartDao {
 
     @Override
     public void add(Product product) {
-        data.add(product);
+        if (find(product.getId()) != null) find(product.getId()).add();
+        else data.add(new CartProduct(product));
     }
 
     @Override
-    public Product find(int id) {
+    public CartProduct find(int id) {
+        if (data.size() == 0) return null;
         return data.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
     }
 
     @Override
     public void remove(int id) {
-        data.remove(find(id));
+        //There is more than one in cart
+        if (find(id).getQuantity() > 1) {
+            find(id).remove();
+        }
+        //Only one in cart
+        else data.remove(find(id));
     }
 
     @Override
-    public List<Product> getAll() {
+    public void removeFully(int id) {
+        find(id).remove();
+    }
+
+    @Override
+    public List<CartProduct> getAll() {
         return data;
     }
 
-    @Override
+    /*@Override
     public List<Product> getBy(Supplier supplier) {
         return data.stream().filter(t -> t.getSupplier().equals(supplier)).collect(Collectors.toList());
     }
@@ -60,5 +70,5 @@ public class CartDaoMem implements CartDao {
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
         return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
-    }
+    }*/
 }

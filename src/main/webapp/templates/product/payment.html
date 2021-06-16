@@ -87,7 +87,7 @@
             <div class="total" th:text="${total}"></div>
             <table class="product-container">
                 <tr class="item" th:each="prod,iterStat : ${products}">
-                    <td class="product-name" th:text="${prod.getName()}">Product name</td>
+                    <td class="product-name" th:text="${prod.getQuantity() + 'x - ' + prod.getName()}">Product name</td>
                     <td><img class="smol" th:attr="src='/static/img/product_' + *{prod.id} + '.jpg'" alt=""/></td>
                     <td th:text="${prod.getPrice()}">Product price</td>
                 </tr>
