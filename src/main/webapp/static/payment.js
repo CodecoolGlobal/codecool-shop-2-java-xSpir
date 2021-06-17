@@ -1,39 +1,39 @@
-let emailer = document.getElementById('user');
+// let emailer = document.getElementById('user');
 const radios = document.querySelectorAll('input[type=radio]');
 const pay = document.getElementById('paywith');
 const userData = document.querySelectorAll('.user-data');
 
-function changeUserData() { //TODO: check for valid email address! ('@')
-    for (let i = 0; i < userData.length; i++) {
-        let content = userData[i].textContent;
-        let input = document.createElement('input');
-        input.value = content;
-        input.className = 'user-data';
-        if (i !== 2 && i !== 3 ) {
-            input.textContent += `<br>`;
-            i++;
-        }
-        userData[i].replaceWith(input);
-    }
-    emailer.textContent = "Save";
-    emailer.removeEventListener('click', changeUserData);
-    emailer.addEventListener('click', saveUserData);
-}
-
-function saveUserData() {
-    for (let i = 0; i < userData.length; i++) {
-        let content = userData[i].value;
-        let p = document.createElement('p');
-        p.textContent = content;
-        p.className = 'user-data';
-        p.style.margin='3px';
-        if (userData[i].nextElementSibling.nodeName === 'BR') userData[i].nextElementSibling.remove();
-        userData[i].replaceWith(p);
-    }
-    emailer.textContent = 'Change data';
-    emailer.removeEventListener('click', saveUserData);
-    emailer.addEventListener('click', changeUserData);
-}
+// function changeUserData() { //TODO: check for valid email address! ('@')
+//     for (let i = 0; i < userData.length; i++) {
+//         let content = userData[i].textContent;
+//         let input = document.createElement('input');
+//         input.value = content;
+//         input.className = 'user-data';
+//         if (i !== 2 && i !== 3 ) {
+//             input.textContent += `<br>`;
+//             i++;
+//         }
+//         userData[i].replaceWith(input);
+//     }
+//     emailer.textContent = "Save";
+//     emailer.removeEventListener('click', changeUserData);
+//     emailer.addEventListener('click', saveUserData);
+// }
+//
+// function saveUserData() {
+//     for (let i = 0; i < userData.length; i++) {
+//         let content = userData[i].value;
+//         let p = document.createElement('p');
+//         p.textContent = content;
+//         p.className = 'user-data';
+//         p.style.margin='3px';
+//         if (userData[i].nextElementSibling.nodeName === 'BR') userData[i].nextElementSibling.remove();
+//         userData[i].replaceWith(p);
+//     }
+//     emailer.textContent = 'Change data';
+//     emailer.removeEventListener('click', saveUserData);
+//     emailer.addEventListener('click', changeUserData);
+// }
 
 function changePayButton() {
     pay.textContent = 'Pay with ';
@@ -42,7 +42,7 @@ function changePayButton() {
 
 }
 
-emailer.addEventListener('click', saveUserData);
+// emailer.addEventListener('click', saveUserData);
 changePayButton();
 radios.forEach(radio => radio.addEventListener('change', changePayButton));
 
@@ -85,7 +85,6 @@ function collectUserData() {
         },
         body: JSON.stringify(customer)
     }).then(resp => {
-        resp.json();
         if (resp.status === 200) window.location = '/confirmation';
     });
 }
