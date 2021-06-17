@@ -29,17 +29,14 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" />
     <script src="/static/js/reloadfunctions.js"></script>
     <!--javascript for ajax call-->
 </head>
 
 <body>
+<div th:replace="header.html :: copy"></div>
 
-
-
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div>
 <div class="col col-sm-12 col-md-6 col-lg-4" th:each="category : ${categories}">
 <span><button class="btn btn-category" type="button" th:attr="onclick=|sendAjax('${category.name}')|" th:text="${category.name}">Category name</button></span>
 </div>
