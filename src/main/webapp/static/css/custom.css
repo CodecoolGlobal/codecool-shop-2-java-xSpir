@@ -61,12 +61,31 @@
     margin: 0 0 11px;
 }
 img {
-    width: auto;
-    height: 217px;
+    width:70%;
+    max-width:328px;
+    max-height:328px;
 }
 
-/*Session session = Session.getDefaultInstance(props, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, password);
-            }
-        });*/
+.tile_div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.supplier-category{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.body {
+    width: 100vw;
+}
+
+.card {
+    max-width: 300px;
+}
+.div{
+    position: relative;
+}
+
+.btn {
+    background-color:whitesmoke;
+}

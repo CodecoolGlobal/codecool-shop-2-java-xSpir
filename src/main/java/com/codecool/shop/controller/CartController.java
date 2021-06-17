@@ -35,13 +35,14 @@ public class CartController extends HttpServlet {
 
             resp.sendRedirect("/cart");
         }
-        else if (req.getParameterMap().containsKey("rmf")) {
-            cartDataStore.removeFully(Integer.parseInt(req.getParameter("rmf")));
+
+        else if (req.getParameterMap().containsKey("rm")) {
+            if (cartDataStore.find(Integer.parseInt(req.getParameter("rm"))) != null) cartDataStore.remove(Integer.parseInt(req.getParameter("rm")));
 
             resp.sendRedirect("/cart");
         }
-        else if (req.getParameterMap().containsKey("rm")) {
-            cartDataStore.remove(Integer.parseInt(req.getParameter("rm")));
+        else if (req.getParameterMap().containsKey("rmf")) {
+            if (cartDataStore.find(Integer.parseInt(req.getParameter("rmf"))) != null) cartDataStore.removeFully(Integer.parseInt(req.getParameter("rmf")));
 
             resp.sendRedirect("/cart");
         }
@@ -49,9 +50,9 @@ public class CartController extends HttpServlet {
             TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
             WebContext context = new WebContext(req, resp, req.getServletContext());
             context.setVariable("products", cartDataStore.getAll());
+            context.setVariable("useJs", true);
 
             engine.process("product/cart.html", context, resp.getWriter());
         }
     }
-
 }
