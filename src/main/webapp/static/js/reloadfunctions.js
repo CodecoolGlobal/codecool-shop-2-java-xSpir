@@ -3,15 +3,18 @@ $("button").click(function() {
     alert(fired_button);
 });
 
+function test(parameter) {
+    console.log(parameter)
+        alert(parameter)
+}
 
-
-function sendAjax() {
+function sendAjax(name) {
     fetch('/testServlet')
         .then(response => response.json())
-        .then(data => products(data));
+        .then(data => products(data,name));
 
-    function products(data) {
-        console.log(data);
+
+    function products(data,name) {
         let tbody = document.querySelector('#reloaded-products');
         tbody.innerHTML = '';
         let contentText = '<div class="card">\n' +
@@ -19,9 +22,14 @@ function sendAjax() {
             '    </div>'      +
             '<div id="products" class="row">'
         for (let product of data) {
-            let source = "/static/img/product_" +product.id + ".jpg"
-            contentText +=
-                `
+            console.log(product)
+            console.log(name)
+            console.log(product.supplier)
+            // if (product.productCategory == name || product.supplier == name) {
+            if (product.productCategory.name == name || product.supplier.name == name){
+                let source = "/static/img/product_" + product.id + ".jpg"
+                contentText +=
+                    `
             <div className="col col-sm-12 col-md-6 col-lg-4">
             <div class="card">
                 <img class="" src=${source}>
@@ -41,6 +49,7 @@ function sendAjax() {
             </div>
         </div>
 `
+            }
         }
 
         contentText += '</div>   '

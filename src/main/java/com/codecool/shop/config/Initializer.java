@@ -37,8 +37,8 @@ public class Initializer implements ServletContextListener {
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         productCategoryDataStore.add(tablet);
 
-        ProductCategory eatableNuts = new ProductCategory("Eatable Nut", "Nut", "A nut you can eat.");
-        productCategoryDataStore.add(eatableNuts);
+        ProductCategory edibleNuts = new ProductCategory("Edible Nut", "Nut", "A nut you can eat.");
+        productCategoryDataStore.add(edibleNuts);
 
         ProductCategory nuclearCore = new ProductCategory("Nuclear core", "Nuclear", "A nut you cannot eat.");
         productCategoryDataStore.add(nuclearCore);
@@ -46,8 +46,8 @@ public class Initializer implements ServletContextListener {
         //setting up products and printing it
         productDataStore.add(new Product(1,"Amazon Fire", 49.9f, "USD", "Description String.", tablet, amazon));
         productDataStore.add(new Product(2,"Lenovo IdeaPad Miix 700", 479, "USD", "Description String.", tablet, lenovo));
-        productDataStore.add(new Product(3,"Amazon Fire", 49.9f, "USD", "Description String.", tablet, amazon));
-        productDataStore.add(new Product(4,"Amazon Fire", 49.9f, "USD", "Description String.", tablet, amazon));
+        productDataStore.add(new Product(3,"Amazon Randomtablet", 49.9f, "USD", "Description String.", tablet, amazon));
+        productDataStore.add(new Product(4,"Nuts", 49.9f, "USD", "Description String.", edibleNuts, amazon));
 
     }
 }
