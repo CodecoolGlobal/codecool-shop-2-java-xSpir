@@ -13,7 +13,7 @@ async function updateQuantity(id) {
     else {
         document.getElementById("quantity"+id).innerText = result.split(' ')[0] + "x";
         let price = Math.round(result.split(' ')[1] * 10 / 10).toFixed(1).toString();
-        document.getElementById('price').textContent = price + " " + result.split(' ')[2];
+        document.getElementById(`price${id}`).textContent = price + " " + result.split(' ')[2];
     }
 }
 

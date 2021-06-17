@@ -31,7 +31,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <!--    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>-->
     <link rel="stylesheet" type="text/css" href="/static/css/payment.css"/>
-    <script src="/static/js/payment.js/payment.js" defer></script>
+    <script src="/static/js/payment.js" defer></script>
 </head>
 <body>
 
@@ -85,11 +85,11 @@
         </div>
         <div class="items">
             <div class="total" th:text="${total}"></div>
-            <table class="product-container">
+            <table class="table product-container">
                 <tr class="item" th:each="prod,iterStat : ${products}">
-                    <td class="product-name" th:text="${prod.getQuantity() + 'x - ' + prod.getName()}">Product name</td>
+                    <td style="text-align: left" class="product-name" th:text="${prod.getQuantity() + 'x - ' + prod.getName()}">Product name</td>
                     <td><img class="smol" th:attr="src='/static/img/product_' + *{prod.id} + '.jpg'" alt=""/></td>
-                    <td th:text="${prod.getPrice()}">Product price</td>
+                    <td style="text-align: right" th:text="${prod.getDefaultPrice() + ' ' + prod.getDefaultCurrency()}">Product price</td>
                 </tr>
             </table>
         </div>

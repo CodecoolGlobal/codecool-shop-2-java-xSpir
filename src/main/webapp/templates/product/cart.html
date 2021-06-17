@@ -41,7 +41,7 @@
     </div>
     <br>
 
-    <div id="products" class="row">
+    <div style="justify-content: center" id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
                 <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
@@ -57,7 +57,7 @@
                         <button class="btn btn-success" th:attr="onclick='sendModification('+${prod.id}+', true)'" th:if="${useJs == true}">+</button>
                         <button class="btn btn-danger" th:attr="onclick='sendModification('+${prod.id}+', false)'" th:if="${useJs == true}">-</button>
                         <br>
-                        <p class="lead" id="price" th:text="${prod.getPrice()}">100 USD</p>
+                        <p class="lead" th:attr="id='price'+ ${prod.id}" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
                         <a class="btn btn-danger" th:attr="href='/cart?rmf='+ ${prod.id}">Remove</a>
