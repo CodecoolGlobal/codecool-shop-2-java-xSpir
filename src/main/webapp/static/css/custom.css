@@ -61,6 +61,20 @@
     margin: 0 0 11px;
 }
 img {
-    width: auto;
-    height: 217px;
+    width:70%;
+    max-width:328px;
+    max-height:328px;
+}
+
+.tile_div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.supplier-category{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.body {
+    width: 100vw;
 }

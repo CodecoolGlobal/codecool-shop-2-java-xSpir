@@ -20,9 +20,14 @@ public class ProductService{
         return productCategoryDao.find(categoryId);
     }
 
+
     public List<Product> getProductsForCategory(int categoryId){
         var category = productCategoryDao.find(categoryId);
         return productDao.getBy(category);
+    }
+
+    public List<Product> getEveryProducts(){
+        return productDao.getAll();
     }
     public List<ProductCategory> getEveryProductCategory(){
         return productCategoryDao.getAll();

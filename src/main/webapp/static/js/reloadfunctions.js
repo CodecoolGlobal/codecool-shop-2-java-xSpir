@@ -17,22 +17,23 @@ function sendAjax(name) {
     function products(data,name) {
         let tbody = document.querySelector('#reloaded-products');
         tbody.innerHTML = '';
-        let contentText = '<div class="card">\n' +
-            '        <strong>Products//todo</strong>' +
+        let contentText = '<div class="card">' +
+            '<strong>' +
+            name +
+            '</strong>' +
             '    </div>'      +
             '<div id="products" class="row">'
         for (let product of data) {
             console.log(product)
             console.log(name)
             console.log(product.supplier)
-            // if (product.productCategory == name || product.supplier == name) {
-            if (product.productCategory.name == name || product.supplier.name == name){
+            if (product.productCategory.name == name || product.supplier.name == name || name == "every_product"){
                 let source = "/static/img/product_" + product.id + ".jpg"
                 contentText +=
                     `
             <div className="col col-sm-12 col-md-6 col-lg-4">
             <div class="card">
-                <img class="" src=${source}>
+                <img class="img" src=${source}>
 
                 <div class="card-header">
                     <h4 class="card-title">${product.name}</h4>
