@@ -36,12 +36,12 @@ public class CartController extends HttpServlet {
             resp.sendRedirect("/cart");
         }
         else if (req.getParameterMap().containsKey("rm")) {
-            cartDataStore.remove(Integer.parseInt(req.getParameter("rm")));
+            if (cartDataStore.find(Integer.parseInt(req.getParameter("rm"))) != null) cartDataStore.remove(Integer.parseInt(req.getParameter("rm")));
 
             resp.sendRedirect("/cart");
         }
         else if (req.getParameterMap().containsKey("rmf")) {
-            cartDataStore.removeFully(Integer.parseInt(req.getParameter("rmf")));
+            if (cartDataStore.find(Integer.parseInt(req.getParameter("rmf"))) != null) cartDataStore.removeFully(Integer.parseInt(req.getParameter("rmf")));
 
             resp.sendRedirect("/cart");
         }
@@ -53,5 +53,4 @@ public class CartController extends HttpServlet {
             engine.process("product/cart.html", context, resp.getWriter());
         }
     }
-
 }
