@@ -12,6 +12,7 @@ public class CartDaoMem implements CartDao {
 
     private List<CartProduct> data = new ArrayList<>();
     private static CartDaoMem instance = null;
+    private static CartDaoMem legacyInstance = null;
 
     /* A private Constructor prevents any other class from instantiating.
      */
@@ -23,6 +24,18 @@ public class CartDaoMem implements CartDao {
             instance = new CartDaoMem();
         }
         return instance;
+    }
+
+    public static CartDaoMem getLegacyInstance() {
+        if (legacyInstance == null) {
+            legacyInstance = getInstance();
+        }
+        return legacyInstance;
+    }
+
+    public static void destroyCurrentInstance() {
+        getLegacyInstance();
+        instance = null;
     }
 
     public String getTotalPrice() {

@@ -3,16 +3,20 @@ package com.codecool.shop.controller;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONArray;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -44,7 +48,28 @@ public class ConfirmationController extends HttpServlet {
         String paymentSource = dict.containsKey("card") ? dict.get("card") : dict.get("username");
 
         JSONObject transaction = new JSONObject();
-//        transaction.put();
+        try {
+            transaction.put("First name", dict.get("first_name"));
+            transaction.put("Last name", dict.get("last_name"));
+            transaction.put("Post code", dict.get("post_code"));
+            transaction.put("City", dict.get("city"));
+            transaction.put("Address", dict.get("address"));
+            transaction.put("Email address", dict.get("email"));
+            transaction.put("Card number", dict.get("card"));
+            transaction.put("Username", dict.get("username"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONArray transaxion = new JSONArray();
+        transaxion.add(transaction);
+        String filename = "transaction";
+        try (FileWriter file = new FileWriter(filename + ".json")) {
+            file.append(transaxion.toJSONString());
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // roleplay
         pay("");
         resp.sendRedirect(String.format("http://localhost:8080/%s",
@@ -65,7 +90,8 @@ public class ConfirmationController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CartDao cartDataStore = CartDaoMem.getInstance();
+        CartDao cartDataStore = CartDaoMem.getLegacyInstance();
+        CartDaoMem.destroyCurrentInstance();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

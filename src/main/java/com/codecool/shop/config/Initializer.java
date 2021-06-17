@@ -42,4 +42,9 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product(3,"Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
         productDataStore.add(new Product(4, "Premium Quality Californian Almond Nuts", 12, "USD", "Almonds originated in the warm desert areas of westerrn Asia, from which they gradually spread to the warm, dry regions of the Mediterranean basin.", tablet, amazon));
     }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+
+    }
 }

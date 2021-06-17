@@ -1,6 +1,7 @@
 let emailer = document.getElementById('user');
 const radios = document.querySelectorAll('input[type=radio]');
-const pay = document.getElementById('pay');
+const pay = document.getElementById('paywith');
+const userData = document.querySelectorAll('.user-data');
 
 function changeUserData() { //TODO: check for valid email address! ('@')
     for (let i = 0; i < userData.length; i++) {

@@ -21,6 +21,10 @@ public class PaymentController extends HttpServlet {
 //        PaymentDao paymentDataStore = PaymentDaoMem.getInstance();
         CartDao cartDataStore = CartDaoMem.getInstance();
 
+        if (cartDataStore.getAll().size() == 0) {
+            resp.sendRedirect("http://localhost:8080/?redir=empty_cart");
+        }
+
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 //        context.setVariable("category", productService.getProductCategory(1));
