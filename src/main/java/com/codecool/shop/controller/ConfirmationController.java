@@ -177,7 +177,7 @@ public class ConfirmationController extends HttpServlet {
         sb.append("Dear ").append(customer.getFirstName()).append(" ").append(customer.getLastName()).append(",\n")
                 .append("Thank you for your order! It is being processed at the moment. It will be shipped to: ").append(customer.getPostCode()).append(", ")
                 .append(customer.getCity()).append(" ").append(customer.getAddress()).append(" between 12-20 workdays.\n")
-                .append("We are delighted you chose the NutShop, take care in these trying times!\n").append("Sincerely,\n").append("The Nut Crew");
+                .append("We are delighted you chose the NutShop, take care in these trying times!\n\n").append("Sincerely,\n").append("The Nut Crew");
         return sb.toString();
     }
 }

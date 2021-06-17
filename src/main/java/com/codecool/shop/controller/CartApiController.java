@@ -34,8 +34,10 @@ public class CartApiController extends HttpServlet {
         if (req.getParameterMap().containsKey("id")) {
             if (cartDataStore.find(Integer.parseInt(req.getParameter("id"))) != null) {
                 int quantity = cartDataStore.find(Integer.parseInt(req.getParameter("id"))).getQuantity();
-
-                out.println(quantity);
+                String price = cartDataStore.find(Integer.parseInt(req.getParameter("id"))).getDefaultPrice() * quantity +
+                        " " + cartDataStore.find(Integer.parseInt(req.getParameter("id"))).getDefaultCurrency();
+                String data = quantity + " " + price;
+                out.println(data);
             }
             else out.println("null");
         }

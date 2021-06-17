@@ -28,7 +28,8 @@
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" />
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <script src="/static/js/cart.js" type="text/javascript"></script>
 </head>
 <body>
@@ -51,13 +52,12 @@
                 <div class="card-body">
                     <div class="card-text">
                         <p id="quantity1" class="lead" th:text="${prod.getQuantity()}+'x'" th:attr="id='quantity'+${prod.id}">1x</p>
-
                         <a class="btn btn-success" th:attr="href='/cart?add='+ ${prod.id}" th:if="${useJs == false}">+</a>
                         <a class="btn btn-danger" th:attr="href='/cart?rm='+ ${prod.id}" th:if="${useJs == false}">-</a>
                         <button class="btn btn-success" th:attr="onclick='sendModification('+${prod.id}+', true)'" th:if="${useJs == true}">+</button>
                         <button class="btn btn-danger" th:attr="onclick='sendModification('+${prod.id}+', false)'" th:if="${useJs == true}">-</button>
                         <br>
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        <p class="lead" id="price" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
                         <a class="btn btn-danger" th:attr="href='/cart?rmf='+ ${prod.id}">Remove</a>
