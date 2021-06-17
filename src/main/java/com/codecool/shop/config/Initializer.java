@@ -40,7 +40,7 @@ public class Initializer implements ServletContextListener {
         ProductCategory edibleNuts = new ProductCategory(2, "Edible Nut", "Nut", "A nut you can eat.");
         productCategoryDataStore.add(edibleNuts);
 
-        ProductCategory nuclearCore = new ProductCategory("Nuclear core", "Nuclear", "A nut you cannot eat.");
+        ProductCategory nuclearCore = new ProductCategory(3, "Nuclear core", "Nuclear", "A nut you cannot eat.");
         productCategoryDataStore.add(nuclearCore);
 
         //setting up products and printing it
