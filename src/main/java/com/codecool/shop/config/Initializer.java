@@ -50,4 +50,9 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product(4,"Nuts", 49.9f, "USD", "Description String.", edibleNuts, amazon));
 
     }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+
+    }
 }

@@ -12,6 +12,7 @@ public class CartDaoMem implements CartDao {
 
     private List<CartProduct> data = new ArrayList<>();
     private static CartDaoMem instance = null;
+    private static CartDaoMem legacyInstance = null;
 
     /* A private Constructor prevents any other class from instantiating.
      */
@@ -25,9 +26,21 @@ public class CartDaoMem implements CartDao {
         return instance;
     }
 
+    public static CartDaoMem getLegacyInstance() {
+        if (legacyInstance == null) {
+            legacyInstance = getInstance();
+        }
+        return legacyInstance;
+    }
+
+    public static void destroyCurrentInstance() {
+        getLegacyInstance();
+        instance = null;
+    }
+
     public String getTotalPrice() {
-        return "Total price: " + data.stream().map(Product::getDefaultPrice).reduce(Float.valueOf(0), Float::sum).toString() + " " +
-                data.get(0).getDefaultCurrency();
+        return data.size() > 0 ? "Total price: " + data.stream().map(cartProduct -> cartProduct.getDefaultPrice() * cartProduct.getQuantity()).reduce((float) 0, Float::sum).toString() + " " +
+                data.get(0).getDefaultCurrency() : null;
     }
 
     @Override
@@ -62,7 +75,7 @@ public class CartDaoMem implements CartDao {
         return data;
     }
 
-    /*@Override
+    /* @Override
     public List<Product> getBy(Supplier supplier) {
         return data.stream().filter(t -> t.getSupplier().equals(supplier)).collect(Collectors.toList());
     }
