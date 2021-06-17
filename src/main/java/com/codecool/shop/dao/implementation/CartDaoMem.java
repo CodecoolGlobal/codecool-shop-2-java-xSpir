@@ -26,8 +26,8 @@ public class CartDaoMem implements CartDao {
     }
 
     public String getTotalPrice() {
-        return "Total price: " + data.stream().map(Product::getDefaultPrice).reduce(Float.valueOf(0), Float::sum).toString() + " " +
-                data.get(0).getDefaultCurrency();
+        return data.size() > 0 ? "Total price: " + data.stream().map(cartProduct -> cartProduct.getDefaultPrice() * cartProduct.getQuantity()).reduce((float) 0, Float::sum).toString() + " " +
+                data.get(0).getDefaultCurrency() : null;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CartDaoMem implements CartDao {
         return data;
     }
 
-    /*@Override
+    /* @Override
     public List<Product> getBy(Supplier supplier) {
         return data.stream().filter(t -> t.getSupplier().equals(supplier)).collect(Collectors.toList());
     }

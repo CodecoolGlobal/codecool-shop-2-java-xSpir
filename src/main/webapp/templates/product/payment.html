@@ -71,7 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Pay</button>
+                <button id="pay" type="button" class="btn btn-primary">Pay</button>
             </div>
         </div>
     </div>
@@ -95,10 +95,15 @@
         </div>
     </div>
     <div class="checkout">
-        <div class="email">
+        <div class="user">
             <h2>Email</h2>
-            <input type="email" required placeholder="Your email address" id="user"><br>
-            <a href="#" id="email">Save</a>
+            <input class="user-data" type="text" required placeholder="First name" id="first"><br>
+            <input class="user-data" type="text" required placeholder="Last name"  id="last"><br>
+            <input class="user-data" type="text" required placeholder="Post code" minlength="4" maxlength="4" size="4"  id="postcode">
+            <input class="user-data" type="text" required placeholder="City" id="city">
+            <input class="user-data" type="text" required placeholder="Address" id="address"><br>
+            <input class="user-data" type="email" required placeholder="Your email address" id="email"><br>
+            <a href="#" id="user">Save</a>
         </div>
         <div class="payment-info">
             <h2>Payment information</h2><br>
