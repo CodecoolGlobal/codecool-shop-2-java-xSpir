@@ -26,7 +26,6 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory category) {
-        category.setId(data.size() + 1);
         data.add(category);
     }
 
