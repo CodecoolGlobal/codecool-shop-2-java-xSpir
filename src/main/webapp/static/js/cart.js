@@ -12,7 +12,7 @@ async function updateQuantity(id) {
     if (result === "null\r\n") location.reload();
     else {
         document.getElementById("quantity"+id).innerText = result.split(' ')[0] + "x";
-        let price = Math.round(result.split(' ')[1] * 10 / 10).toFixed(1).toString();
+        let price = result.split(' ')[1];
         document.getElementById(`price${id}`).textContent = price + " " + result.split(' ')[2];
     }
 }
