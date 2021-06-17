@@ -5,7 +5,7 @@
     <meta name="author" content="Codecool" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Codecool Shop</title>
+    <title>Nut store</title>
 
     <script src="js/jquery.1.9.1.min.js"></script>
     <!--Jquery import-->
@@ -35,10 +35,11 @@
 </head>
 
 <body>
+<div style="background-image: url('/static/img/Blog-Nut-Quality.jpg');">
 <div th:replace="header.html :: copy"></div>
 <div class ="tile_div">
     <div class="col col-sm-12 col-md-6 col-lg-4">
-        <span><button class="btn btn-category" type="button" th:attr="onclick=|sendAjax('every_product')|" >Every product</button></span>
+        <span><button class="btn btn-category" type="button" th:attr="onclick=|sendAjax('Every product')|" >Every product</button></span>
     </div>
 
 
@@ -57,8 +58,8 @@
 <div class="container" id="reloaded-products">
 
 
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+    <div class="category-title">
+        <strong>Every product</strong>
     </div>
 
 

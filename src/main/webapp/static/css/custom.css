@@ -78,3 +78,14 @@ img {
 .body {
     width: 100vw;
 }
+
+.card {
+    max-width: 300px;
+}
+.div{
+    position: relative;
+}
+
+.btn {
+    background-color:whitesmoke;
+}

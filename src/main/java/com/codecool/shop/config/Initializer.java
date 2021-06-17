@@ -44,7 +44,7 @@ public class Initializer implements ServletContextListener {
         productCategoryDataStore.add(nuclearCore);
 
         //setting up products and printing it
-        productDataStore.add(new Product(1,"Amazon Fire", 49.9f, "USD", "Description String.", tablet, amazon));
+        productDataStore.add(new Product(1,"Amazon Fire", 49.9f, "USD", "Descrissssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssption String.", tablet, amazon));
         productDataStore.add(new Product(2,"Lenovo IdeaPad Miix 700", 479, "USD", "Description String.", tablet, lenovo));
         productDataStore.add(new Product(3,"Amazon Randomtablet", 49.9f, "USD", "Description String.", tablet, amazon));
         productDataStore.add(new Product(4,"Nuts", 49.9f, "USD", "Description String.", edibleNuts, amazon));

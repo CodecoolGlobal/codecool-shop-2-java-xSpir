@@ -17,7 +17,7 @@ function sendAjax(name) {
     function products(data,name) {
         let tbody = document.querySelector('#reloaded-products');
         tbody.innerHTML = '';
-        let contentText = '<div class="card">' +
+        let contentText = '<div class="category-title">' +
             '<strong>' +
             name +
             '</strong>' +
@@ -27,7 +27,7 @@ function sendAjax(name) {
             console.log(product)
             console.log(name)
             console.log(product.supplier)
-            if (product.productCategory.name == name || product.supplier.name == name || name == "every_product"){
+            if (product.productCategory.name == name || product.supplier.name == name || name == "Every product"){
                 let source = "/static/img/product_" + product.id + ".jpg"
                 contentText +=
                     `
