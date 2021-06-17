@@ -64,3 +64,9 @@ img {
     width: auto;
     height: 217px;
 }
+
+/*Session session = Session.getDefaultInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+        });*/

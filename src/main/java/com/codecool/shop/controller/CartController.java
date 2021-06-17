@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(urlPatterns = {"/cart"})
+@WebServlet(urlPatterns = {"/cart"}, name = "cart")
 public class CartController extends HttpServlet {
 
     @Override
@@ -35,13 +35,13 @@ public class CartController extends HttpServlet {
 
             resp.sendRedirect("/cart");
         }
-        else if (req.getParameterMap().containsKey("rm")) {
-            cartDataStore.remove(Integer.parseInt(req.getParameter("rm")));
+        else if (req.getParameterMap().containsKey("rmf")) {
+            cartDataStore.removeFully(Integer.parseInt(req.getParameter("rmf")));
 
             resp.sendRedirect("/cart");
         }
-        else if (req.getParameterMap().containsKey("rmf")) {
-            cartDataStore.removeFully(Integer.parseInt(req.getParameter("rmf")));
+        else if (req.getParameterMap().containsKey("rm")) {
+            cartDataStore.remove(Integer.parseInt(req.getParameter("rm")));
 
             resp.sendRedirect("/cart");
         }

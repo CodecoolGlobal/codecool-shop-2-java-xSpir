@@ -2,14 +2,19 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.dao.CustomerDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.dao.implementation.CustomerDaoMem;
+import com.codecool.shop.model.Customer;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.simple.JSONArray;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
-import java.io.FileWriter;
-import java.io.IOException;
-import org.json.simple.JSONArray;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,27 +23,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.PrintWriter;
+import java.util.*;
 
-@WebServlet(urlPatterns = {"/confirmation"})
+@WebServlet(urlPatterns = {"/confirmation"}, name = "confirmation")
 public class ConfirmationController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String jsonString = "";
+        CustomerDao customerDao = CustomerDaoMem.getInstance();
+        StringBuilder jsonString = new StringBuilder();
         try {
             String line = "";
             BufferedReader reader = req.getReader();
             while ((line = reader.readLine()) != null)
-                jsonString += line;
+                jsonString.append(line);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("jsonString = " + jsonString);
-        // example: {"first_name":"Balint","last_name":"Molnar","card":"326263462345235457547467"}
         HashMap<String, String> dict = new HashMap<>();
         String[] keysValues =
-                jsonString.replace("\"", "")
+                jsonString.toString().replace("\"", "")
                         .replace("{", "")
                         .replace("}", "")
                         .split(",");
@@ -47,6 +52,23 @@ public class ConfirmationController extends HttpServlet {
 
         String paymentSource = dict.containsKey("card") ? dict.get("card") : dict.get("username");
 
+        saveJSONFile(dict);
+        Customer customer = getCustomer(dict);
+        customerDao.add(customer);
+        try {
+            sendMail(req, resp, customer);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // roleplay
+        pay("");
+        resp.sendRedirect(String.format("http://localhost:8080/%s",
+                checkPayment(paymentSource) ? "?redir=payment_fail" : ("success?" + paymentSource)));
+        resp.setStatus(200);
+    }
+
+    private void saveJSONFile(HashMap<String, String> dict) {
         JSONObject transaction = new JSONObject();
         try {
             transaction.put("First name", dict.get("first_name"));
@@ -69,12 +91,6 @@ public class ConfirmationController extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // roleplay
-        pay("");
-        resp.sendRedirect(String.format("http://localhost:8080/%s",
-                checkPayment(paymentSource) ? "?redir=payment_fail" : ("success?" + paymentSource)));
-        resp.setStatus(200);
     }
 
     private void pay(String auth) {
@@ -101,5 +117,67 @@ public class ConfirmationController extends HttpServlet {
         }
 
         engine.process("product/postorder.html", context, resp.getWriter());
+    }
+
+    private Customer getCustomer(HashMap<String, String> dict) throws IOException {
+        return new Customer(dict.get("first_name"), dict.get("last_name"), dict.get("post_code"),
+                dict.get("city"), dict.get("address"), dict.get("email"));
+    }
+
+    private void sendMail(HttpServletRequest req, HttpServletResponse resp, Customer customer) throws IOException, MessagingException {
+
+        String to = customer.getEmail();
+
+        String host = "smtp.gmail.com";
+
+        final String from = "deeznutsshop666@gmail.com";
+        final String password = "nuclearkernel";
+        Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", password);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        String mes = getMessage(customer);
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Your latest transaction");
+
+            // Now set the actual message
+            message.setText(mes);
+
+            // Send message
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getMessage(Customer customer) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dear ").append(customer.getFirstName()).append(" ").append(customer.getLastName()).append(",\n")
+                .append("Thank you for your order! It is being processed at the moment. It will be shipped to: ").append(customer.getPostCode()).append(", ")
+                .append(customer.getCity()).append(" ").append(customer.getAddress()).append(" between 12-20 workdays.\n")
+                .append("We are delighted you chose the NutShop, take care in these trying times!\n").append("Sincerely,\n").append("The Nut Crew");
+        return sb.toString();
     }
 }

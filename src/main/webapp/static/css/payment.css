@@ -12,7 +12,8 @@ body {
     display: grid;
     grid-template-columns: 1fr 1.8fr;
     opacity: 0.8;
-    height: 70vh;
+    min-height: 78vh;
+    height: auto;
     width: 100vw;
 }
 

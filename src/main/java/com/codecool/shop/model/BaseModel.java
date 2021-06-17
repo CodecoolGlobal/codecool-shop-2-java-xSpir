@@ -38,10 +38,6 @@ public class BaseModel {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -51,7 +47,7 @@ public class BaseModel {
             try {
                 value = field.get(this);
                 if (value != null) {
-                    sb.append(field.getName() + ":" + value + ",");
+                    sb.append(field.getName()).append(":").append(value).append(",");
                 }
             } catch (IllegalAccessException e) {
 

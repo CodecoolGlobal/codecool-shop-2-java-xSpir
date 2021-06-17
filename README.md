@@ -53,10 +53,10 @@ a shopping cart, checkout items and make payments.
     - Given I checked out the items from the Shopping cart and chosen the payment method then based on the selected payment method I can enter the credentials for the payment provider: card number, card holder, expiry date, code (in case of credit card), username and password (in case of paypal)
 
 10. As a User, I want to see the result of my payment so that I can get a confirmation about my Order.
-    - Given I made a payment and there was an error in the transaction then I can see the details of the error
-    - Given I made a payment and the transaction was successful then I can see the Confirmation page with the details of the Order
-    - Given I made a payment and the transaction was successful then then ensure it saves the Order into a `JSON` file
-    - Given I made a payment and the transaction was successful then ensure it sends an email to the User about the Order
+    - Given I made a payment and there was an error in the customer then I can see the details of the error
+    - Given I made a payment and the customer was successful then I can see the Confirmation page with the details of the Order
+    - Given I made a payment and the customer was successful then then ensure it saves the Order into a `JSON` file
+    - Given I made a payment and the customer was successful then ensure it sends an email to the User about the Order
 
 11. As an Admin, I want to have a logfile about the checkout processes (per Order) so that I can see the steps of every Order and investigate issues.
     - Given the User started a checkout process then ensure it saves all the steps and details into a JSON file (where the filename is the Order ID and Date)
