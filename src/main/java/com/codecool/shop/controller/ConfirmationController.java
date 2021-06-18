@@ -56,7 +56,7 @@ public class ConfirmationController extends HttpServlet {
         Customer customer = getCustomer(dict);
         customerDao.add(customer);
         try {
-            sendMail(req, resp, customer);
+            sendMail(resp, customer);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -124,7 +124,7 @@ public class ConfirmationController extends HttpServlet {
                 dict.get("city"), dict.get("address"), dict.get("email"));
     }
 
-    private void sendMail(HttpServletRequest req, HttpServletResponse resp, Customer customer) throws IOException, MessagingException {
+    private void sendMail(HttpServletResponse resp, Customer customer) throws IOException, MessagingException {
 
         String to = customer.getEmail();
 
@@ -150,22 +150,11 @@ public class ConfirmationController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         String mes = getMessage(customer);
         try {
-            // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
-
-            // Set From: header field of the header.
             message.setFrom(new InternetAddress(from));
-
-            // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-            // Set Subject: header field
             message.setSubject("Your latest transaction");
-
-            // Now set the actual message
             message.setText(mes);
-
-            // Send message
             Transport.send(message);
         } catch (MessagingException e) {
             e.printStackTrace();
