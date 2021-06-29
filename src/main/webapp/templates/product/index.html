@@ -5,7 +5,15 @@
     <meta name="author" content="Codecool" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+<<<<<<< HEAD
     <title>Codecool Shop</title>
+=======
+
+    <title>Nut store</title>
+
+    <script src="js/jquery.1.9.1.min.js"></script>
+    <!--Jquery import-->
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
 
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
@@ -20,12 +28,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+<<<<<<< HEAD
+=======
+    <script src="/static/js/alert.js" defer></script>
+
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+<<<<<<< HEAD
 </head>
 
 <body>
@@ -46,19 +60,72 @@
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text" th:text="${prod.description}">Product description... </p>
+=======
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <script src="/static/js/reloadfunctions.js"></script>
+    <!--javascript for ajax call-->
+</head>
+
+<body>
+<div th:replace="header.html :: copy"></div>
+<div class ="tile_div">
+    <div class="col col-sm-12 col-md-6 col-lg-4">
+        <span><button class="btn btn-category" type="button" th:attr="onclick=|sendAjax('Every product')|" >Every product</button></span>
+    </div>
+
+
+<div class="col col-sm-12 col-md-6 col-lg-4" th:each="category : ${categories}">
+<span><button class="btn btn-category" type="button" th:attr="onclick=|sendAjax('${category.name}')|" th:text="${category.name}">Category name</button></span>
+</div>
+
+
+    </div>
+<div class="supplier-category">
+<div class="col col-sm-12 col-md-6 col-lg-4" th:each="supplier : ${suppliers}">
+    <span><button class="btn btn-category" type="button" th:attr="onclick=|sendAjax('${supplier.name}')|"  th:text="${supplier.name}">Category name</button></span>
+</div>
+</div>
+
+<div class="container" id="reloaded-products">
+
+
+    <div class="category-title">
+        <strong>Every product</strong>
+    </div>
+
+
+
+    <div id="products" class="row">
+        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+            <div class="card">
+                <img class="img" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+
+                <div class="card-header">
+                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                    <p class="card-text" th:text="${prod.description}">Product description...</p>
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
                 </div>
                 <div class="card-body">
                     <div class="card-text">
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
+<<<<<<< HEAD
                         <a class="btn btn-success" href="#">Add to cart</a>
+=======
+                        <a class="btn btn-success" th:attr="href='/cart?add='+ ${prod.getId()}">Add to cart</a>
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
 </div>
 
 <div th:replace="footer.html :: copy"></div>

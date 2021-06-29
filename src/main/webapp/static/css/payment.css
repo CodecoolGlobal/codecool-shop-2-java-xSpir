@@ -1,0 +1,120 @@
+* {
+    font-family: 'Pangolin', cursive;
+}
+body {
+    opacity: 0.92;
+}
+/*.payment-container:hover {*/
+/*    opacity: 1;*/
+/*}*/
+
+.payment-container {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    opacity: 0.8;
+    min-height: 78vh;
+    height: auto;
+    width: 100vw;
+}
+
+.shopping-cart {
+    display: flex;
+    flex-flow: column;
+    margin: 20px;
+    padding: 40px;
+    line-height: 250%;
+}
+.email:hover {
+    opacity: 1;
+}
+
+.payment-info:hover {
+    opacity: 1;
+}
+
+.checkout {
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 1fr 3fr;
+    grid-gap: 50px;
+    margin: 20px;
+    padding: 40px;
+    line-height: 250%;
+    height: 70vh;
+}
+
+.payment-info {
+    position: relative;
+}
+
+#credit {
+    position: relative;
+    left: 25%;
+}
+
+#pal {
+    position: absolute;
+    left: 41%;
+}
+.smol {
+    width: 150px;
+    height: auto;
+}
+.modal-content {
+    position: fixed;
+    top: 20%;
+    right: 32%;
+    width: 35vw;
+    opacity: 0.9;
+}
+.credit-card {
+    position: relative;
+}
+
+input.in-modal {
+    position: absolute;
+    right: 10%;
+}
+input.in-modal:nth-of-type(1) {
+    position: relative;
+    left: 23%;
+    width: 100px;
+}
+input.in-modal:nth-of-type(2) {
+    position: relative;
+    left: 24%;
+    width: 100px;
+}
+input.in-modal:nth-of-type(3) {
+    position: relative;
+    left: 25%;
+    width: 100px;
+}
+
+input.in-modal:nth-of-type(5) {
+    position: relative;
+    left: 56%;
+}
+#slash {
+    position: relative;
+    left: 57%;
+}
+
+.total {
+    position: absolute;
+    top: 28%;
+    left: 12%;
+    font-size: x-large;
+}
+
+table {
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+}
+.confirm {
+    text-align: center;
+}
+#products {
+    justify-content: center;
+    text-align: -webkit-center;
+}

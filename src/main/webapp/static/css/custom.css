@@ -1,25 +1,47 @@
+<<<<<<< HEAD
 .glyphicon {
     margin-right:5px;
 }
 .thumbnail
 {
+=======
+* {
+    font-family: 'Pangolin', cursive;
+}
+
+.glyphicon {
+    margin-right: 5px;
+}
+
+.thumbnail {
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
     margin-bottom: 20px;
     padding: 0px;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
 }
+<<<<<<< HEAD
 .thumbnail img
 {
     margin-top: 10px;
 }
 .item.list-group-item
 {
+=======
+
+.thumbnail img {
+    margin-top: 10px;
+}
+
+.item.list-group-item {
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
     float: none;
     width: 100%;
     background-color: #fff;
     margin-bottom: 10px;
 }
+<<<<<<< HEAD
 .item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
 {
     background: #428bca;
@@ -44,10 +66,35 @@
 
 .item.list-group-item:before, .item.list-group-item:after
 {
+=======
+
+.item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+    background: #428bca;
+}
+
+.item.list-group-item .list-group-image {
+    margin-right: 10px;
+}
+
+.item.list-group-item .thumbnail {
+    margin-bottom: 0px;
+}
+
+.item.list-group-item .caption {
+    padding: 9px 9px 0px 9px;
+}
+
+.item.list-group-item:nth-of-type(odd) {
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after {
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
     display: table;
     content: " ";
 }
 
+<<<<<<< HEAD
 .item.list-group-item img
 {
     float: left;
@@ -60,3 +107,77 @@
 {
     margin: 0 0 11px;
 }
+=======
+.item.list-group-item img {
+    float: left;
+}
+
+.item.list-group-item:after {
+    clear: both;
+}
+
+.list-group-item-text {
+    margin: 0 0 11px;
+}
+
+img {
+    width: 70%;
+    height: auto;
+    border-radius: 1em;
+    max-width: 328px;
+    max-height: 270px;
+    align-self: center;
+}
+
+.tile_div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.supplier-category {
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+body {
+    width: 100vw;
+    /*background-image: url('/static/img/Blog-Nut-Quality.jpg');*/
+    background: darkkhaki;
+}
+
+.card {
+    display: flex;
+    text-align: center;
+    height: auto;
+    width: 17vw;
+    border-radius: 2em;
+    margin: 20px;
+    padding: 10px;
+}
+.card-title {
+    font-size: medium;
+}
+
+.div {
+    position: relative;
+}
+
+.btn-category {
+    background-color: whitesmoke;
+    width: 10vw;
+    margin-bottom: 40px;
+}
+.footer {
+    text-align: center;
+    font-size: larger;
+    width: 100vw;
+    background: whitesmoke;
+}
+
+.category-title {
+    color: darkgreen;
+    font-weight: bolder;
+    font-size: x-large;
+}
+>>>>>>> abc09488ef259e455852cfae4526848030afd7db
