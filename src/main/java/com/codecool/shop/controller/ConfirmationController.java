@@ -9,8 +9,11 @@ import com.codecool.shop.model.Customer;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -28,6 +31,7 @@ import java.util.*;
 
 @WebServlet(urlPatterns = {"/confirmation"}, name = "confirmation")
 public class ConfirmationController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(ConfirmationController.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,6 +43,7 @@ public class ConfirmationController extends HttpServlet {
             while ((line = reader.readLine()) != null)
                 jsonString.append(line);
         } catch (Exception e) {
+            logger.warn(String.format("Couldn't read JSON data. Check sending side. Error message: %s", e.getMessage()));
             e.printStackTrace();
         }
         HashMap<String, String> dict = new HashMap<>();
@@ -58,6 +63,7 @@ public class ConfirmationController extends HttpServlet {
         try {
             sendMail(resp, customer);
         } catch (MessagingException e) {
+            logger.info(String.format("Unsuccessful email sending attempt. Trace: %s", e.getMessage()));
             e.printStackTrace();
         }
 
@@ -80,6 +86,7 @@ public class ConfirmationController extends HttpServlet {
             transaction.put("Card number", dict.get("card"));
             transaction.put("Username", dict.get("username"));
         } catch (JSONException e) {
+            logger.warn("");
             e.printStackTrace();
         }
         JSONArray transaxion = new JSONArray();
@@ -89,6 +96,7 @@ public class ConfirmationController extends HttpServlet {
             file.append(transaxion.toJSONString());
             file.flush();
         } catch (IOException e) {
+            logger.info(String.format("File writing failed, because: %s", e.getMessage()));
             e.printStackTrace();
         }
     }
@@ -157,6 +165,7 @@ public class ConfirmationController extends HttpServlet {
             message.setText(mes);
             Transport.send(message);
         } catch (MessagingException e) {
+            logger.info(String.format("Messaging exception: %s", e.getMessage()));
             e.printStackTrace();
         }
     }

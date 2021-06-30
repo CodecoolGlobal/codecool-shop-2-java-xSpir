@@ -18,7 +18,6 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        PaymentDao paymentDataStore = PaymentDaoMem.getInstance();
         CartDao cartDataStore = CartDaoMem.getInstance();
 
         if (cartDataStore.getAll().size() == 0) {
