@@ -21,8 +21,6 @@ import java.util.Properties;
 public class Initializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        if (true) {
-
             ProductDao productDataStore = ProductDaoMem.getInstance();
             ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
             SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
@@ -69,9 +67,5 @@ public class Initializer implements ServletContextListener {
             productDataStore.add(new Product(14, "Grains", 649.1f, "USD", "This is the grai...it doesn't work.", nutrients, gymBro));
             productDataStore.add(new Product(15, "Vegetables", 496.1f, "USD", "It's more likely a food, than a table.", nutrients, gymBro));
             productDataStore.add(new Product(16, "Fruits", 694.1f, "USD", "Smooth some juice!", nutrients, gymBro));
-        }
-        else {
-
-        }
     }
 }
