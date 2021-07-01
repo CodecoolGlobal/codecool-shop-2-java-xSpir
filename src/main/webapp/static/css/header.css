@@ -1,6 +1,6 @@
 .head-wrapper {
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
     top: 0;
     left: 0;
@@ -17,4 +17,8 @@
     right: 0;
     bottom: 0;
     padding: 30px;
+}
+.users {
+    position: absolute;
+    left: 25px;
 }

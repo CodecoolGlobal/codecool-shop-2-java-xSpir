@@ -1,5 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
+import com.codecool.shop.controller.JDBC.DatabaseManager;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 import org.slf4j.Logger;
@@ -14,8 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryDaoJDBC implements ProductCategoryDao {
-    private DataSource dataSource;
+    private DataSource dataSource = new DatabaseManager().connect();
     private static final Logger logger = LoggerFactory.getLogger(ProductCategoryDaoJDBC.class);
+
+    public ProductCategoryDaoJDBC() throws SQLException {
+    }
+
     @Override
     public void add(ProductCategory category) {
 

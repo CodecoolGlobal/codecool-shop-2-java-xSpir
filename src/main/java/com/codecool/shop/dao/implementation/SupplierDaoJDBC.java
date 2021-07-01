@@ -1,5 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
+import com.codecool.shop.controller.JDBC.DatabaseManager;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
@@ -16,8 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierDaoJDBC implements SupplierDao {
-    private DataSource dataSource;
+    private DataSource dataSource = new DatabaseManager().connect();
     private static final Logger logger = LoggerFactory.getLogger(SupplierDaoJDBC.class);
+
+    public SupplierDaoJDBC() throws SQLException {
+    }
 
     @Override
     public void add(Supplier supplier) {
