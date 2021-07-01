@@ -3,13 +3,7 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.controller.JDBC.DatabaseManager;
-import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.ProductDaoJDBC;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.service.ProductService;
+import com.codecool.shop.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
@@ -25,9 +19,8 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 @WebServlet(urlPatterns = {"/register"}, name = "register")
 public class RegisterController extends HttpServlet {
@@ -62,12 +55,23 @@ public class RegisterController extends HttpServlet {
 
             if (i > 0) {
                 out.println("You are sucessfully registered");
+                EmailService mailer = new EmailService();
+                mailer.sendRegistrationMail(response, email, registrationConfirmationMessage(name));
+                TimeUnit.SECONDS.sleep(3);
+                response.sendRedirect("/");
             }
+
 
         } catch (Exception se) {
             logger.info("Registration failed: " + se.getMessage());
             se.printStackTrace();
         }
+    }
 
+    private String registrationConfirmationMessage(String name) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dear ").append(name).append(",\n")
+                .append("We are delighted to welcome you as the newest member of the Nut Shop Community!\n\n").append("Sincerely,\n").append("The Nut Crew");
+        return sb.toString();
     }
 }

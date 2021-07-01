@@ -59,7 +59,7 @@ public class ConfirmationController extends HttpServlet {
         Customer customer = getCustomer(dict);
         customerDao.add(customer);
         try {
-            mailer.sendMail(resp, customer, orderConfirmationMessage(customer));
+            mailer.sendCustomerMail(resp, customer, orderConfirmationMessage(customer));
         } catch (MessagingException e) {
             logger.info(String.format("Unsuccessful email sending attempt. Trace: %s", e.getMessage()));
             e.printStackTrace();
