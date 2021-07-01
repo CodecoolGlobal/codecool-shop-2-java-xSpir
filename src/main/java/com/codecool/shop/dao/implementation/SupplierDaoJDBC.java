@@ -18,6 +18,17 @@ import java.util.List;
 
 public class SupplierDaoJDBC implements SupplierDao {
     private DataSource dataSource = new DatabaseManager().connect();
+  
+    /*private static DataSource dataSource;
+
+    static {
+        try {
+            dataSource = new DatabaseManager().connect();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }*/
+
     private static final Logger logger = LoggerFactory.getLogger(SupplierDaoJDBC.class);
 
     public SupplierDaoJDBC() throws SQLException {
