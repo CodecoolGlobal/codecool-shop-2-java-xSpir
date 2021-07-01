@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryDaoJDBC implements ProductCategoryDao {
-    private static DataSource dataSource;
+
+    private DataSource dataSource = new DatabaseManager().connect();
+    /*private static DataSource dataSource;
 
     static {
         try {
@@ -23,9 +25,13 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
+    }*/
 
     private static final Logger logger = LoggerFactory.getLogger(ProductCategoryDaoJDBC.class);
+
+    public ProductCategoryDaoJDBC() throws SQLException {
+    }
+
     @Override
     public void add(ProductCategory category) {
 

@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierDaoJDBC implements SupplierDao {
-    private static DataSource dataSource;
+    private DataSource dataSource = new DatabaseManager().connect();
+  
+    /*private static DataSource dataSource;
 
     static {
         try {
@@ -25,9 +27,12 @@ public class SupplierDaoJDBC implements SupplierDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
+    }*/
 
     private static final Logger logger = LoggerFactory.getLogger(SupplierDaoJDBC.class);
+
+    public SupplierDaoJDBC() throws SQLException {
+    }
 
     @Override
     public void add(Supplier supplier) {
