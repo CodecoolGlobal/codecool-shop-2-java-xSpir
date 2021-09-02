@@ -14,6 +14,4 @@ public interface CartDao {
     void removeFully(int id);
 
     List<CartProduct> getAll();
-    //List<Product> getBy(Supplier supplier);
-    //List<Product> getBy(ProductCategory productCategory);
 }

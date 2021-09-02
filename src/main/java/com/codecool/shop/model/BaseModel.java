@@ -2,6 +2,8 @@ package com.codecool.shop.model;
 
 
 import java.lang.reflect.Field;
+
+import com.codecool.shop.controller.logger.OurLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,6 +56,7 @@ public class BaseModel {
                     sb.append(field.getName()).append(":").append(value).append(",");
                 }
             } catch (IllegalAccessException e) {
+                OurLogger.log(String.format("Access denied: %s", e.getMessage()));
                 logger.info(String.format("Access denied: %s", e.getMessage()));
             }
         }

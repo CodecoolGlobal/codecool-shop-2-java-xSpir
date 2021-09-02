@@ -32,30 +32,9 @@ public class TestServlet extends HttpServlet {
 
         JsonArray jsonArray = new JsonArray();
 
-
-//        for (Product product : products){
-//            JsonObject jsonObject = new JsonObject();
-//            jsonObject.addProperty("namek",product.getName());
-//            jsonObject.addProperty("description",product.getDescription());
-//            jsonObject.addProperty("id",String.valueOf(product.getId()));
-//            jsonObject.addProperty("defaultPrice",String.valueOf(product.getDefaultPrice()));
-//            jsonObject.addProperty("supplier",product.getSupplier().getName());
-//            jsonArray.add(jsonObject);
-//        }
-
-        /*
-        int size = products.size();
-        int packetSize = 2;
-        for (int i = 0; i < Math.ceil(size / (double)packetSize); i++) {
-            String message = this.gson.toJson(products.subList(i * packetSize, (i + 1) * packetSize));
-            System.out.println(message);
-        }
-        */
-
         String messageString = this.gson.toJson(products);
         System.out.println(jsonArray);
         String testString = this.gson.toJson(jsonArray);
-
 
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");

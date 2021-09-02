@@ -11,10 +11,6 @@ public class Product extends BaseModel {
     private ProductCategory productCategory;
     private Supplier supplier;
 
-//    @JsonCreator
-//    public Product(@JsonProperty("name") String name,@JsonProperty("description") String description){
-//        super(name,description);
-//    }
     @JsonCreator
     public Product(@JsonProperty("id") int id,@JsonProperty("name") String name,@JsonProperty("defaultPrice") float defaultPrice,
                    @JsonProperty("currencyString") String currencyString,@JsonProperty("description") String description,
@@ -42,7 +38,7 @@ public class Product extends BaseModel {
     }
 
     public String getPrice() {
-        return String.valueOf(this.defaultPrice) + " " + this.defaultCurrency.toString();
+        return this.defaultPrice + " " + this.defaultCurrency.toString();
     }
 
     public void setPrice(float price, String currency) {

@@ -77,7 +77,7 @@ public class ProductServiceTest {
     void getEveryProductCategory_one_category_test() {
         ProductDao productDao = mock(ProductDaoMem.class);
         ProductCategoryDao productCategoryDao = mock(ProductCategoryDaoMem.class);
-        when(productCategoryDao.getAll()).thenReturn(Arrays.asList(cat));
+        when(productCategoryDao.getAll()).thenReturn(Collections.singletonList(cat));
         service = new ProductService(productDao, productCategoryDao);
         List<ProductCategory> expected = new ArrayList<>();
         expected.add(cat);

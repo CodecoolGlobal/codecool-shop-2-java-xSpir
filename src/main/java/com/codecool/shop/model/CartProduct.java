@@ -10,7 +10,7 @@ public class CartProduct extends Product{
 
     @Override
     public String getPrice() {
-        return String.valueOf(this.getDefaultPrice()*quantity) + " " + this.getDefaultCurrency().toString();
+        return this.getDefaultPrice() * quantity + " " + this.getDefaultCurrency().toString();
     }
 
     public void add() {

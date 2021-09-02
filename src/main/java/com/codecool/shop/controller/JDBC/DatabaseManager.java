@@ -1,15 +1,13 @@
 package com.codecool.shop.controller.JDBC;
 
-import com.codecool.shop.dao.implementation.ProductDaoJDBC;
+import com.codecool.shop.controller.logger.OurLogger;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sql.DataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.*;
-
-import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -27,6 +25,7 @@ public class DatabaseManager {
             appProps.load(new FileInputStream(appConfigPath));
             dao = appProps.get("dao");
         } catch (IOException e) {
+            OurLogger.log("IO Exception while searching for properties file: " + e.getMessage());
             logger.info("IO Exception while searching for properties file: " + e.getMessage());
             e.printStackTrace();
         }

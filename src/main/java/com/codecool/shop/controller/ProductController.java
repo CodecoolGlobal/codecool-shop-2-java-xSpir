@@ -2,6 +2,7 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.controller.JDBC.DatabaseManager;
+import com.codecool.shop.controller.logger.OurLogger;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
@@ -46,17 +47,10 @@ public class ProductController extends HttpServlet {
             context.setVariable("products", productService.getEveryProducts());
             engine.process("product/index.html", context, resp.getWriter());
         } catch (SQLException throwables) {
+            OurLogger.log("Error while rendering page: " + throwables.getMessage());
             logger.info("Error while rendering page: " + throwables.getMessage());
             throwables.printStackTrace();
         }
-
-
-        // // Alternative setting of the template context
-        // Map<String, Object> params = new HashMap<>();
-        // params.put("category", productCategoryDataStore.find(1));
-        // params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
-        // context.setVariables(params);
-
     }
 
 }

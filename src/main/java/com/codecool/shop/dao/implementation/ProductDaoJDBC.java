@@ -1,5 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
+import com.codecool.shop.controller.logger.OurLogger;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
@@ -53,6 +54,7 @@ public class ProductDaoJDBC implements ProductDao {
             return new Product(rs.getInt(1), rs.getString(2), rs.getFloat(3),
                     rs.getString(4), rs.getString(5), rs.getObject(6, ProductCategory.class), rs.getObject(7, Supplier.class));
         } catch (SQLException e) {
+            OurLogger.log("Error while finding Product: " + e.getMessage());
             logger.info("Error while finding Product: " + e.getMessage());
             throw new RuntimeException(e);
         }
@@ -71,7 +73,7 @@ public class ProductDaoJDBC implements ProductDao {
             String sql = "SELECT * FROM product";
             ResultSet rs = conn.createStatement().executeQuery(sql);
             List<Product> result = new ArrayList<>();
-            while (rs.next()) { // while result set pointer is positioned before or on last row read authors
+            while (rs.next()) {
                 ProductCategory category = productCategoryDaoJDBC.find(rs.getInt(6));
                 Supplier supplier = supplierDaoJDBC.find(rs.getInt(7));
                 Product product = new Product(rs.getInt(1), rs.getString(3), rs.getFloat(2),
@@ -80,6 +82,7 @@ public class ProductDaoJDBC implements ProductDao {
             }
             return result;
         } catch (SQLException e) {
+            OurLogger.log("Error while finding all Products: " + e.getMessage());
             logger.info("Error while finding all Products: " + e.getMessage());
             throw new RuntimeException("Error while reading all products", e);
         }
@@ -100,6 +103,7 @@ public class ProductDaoJDBC implements ProductDao {
             }
             return result;
         } catch (SQLException e) {
+            OurLogger.log("Error while finding Products: " + e.getMessage());
             logger.info("Error while finding Products: " + e.getMessage());
             throw new RuntimeException("Error while reading all products", e);
         }
@@ -120,6 +124,7 @@ public class ProductDaoJDBC implements ProductDao {
             }
             return result;
         } catch (SQLException e) {
+            OurLogger.log("Error while finding Products: " + e.getMessage());
             logger.info("Error while finding Products: " + e.getMessage());
             throw new RuntimeException("Error while reading all products", e);
         }

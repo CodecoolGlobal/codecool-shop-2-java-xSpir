@@ -1,6 +1,7 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.controller.JDBC.DatabaseManager;
+import com.codecool.shop.controller.logger.OurLogger;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 import org.slf4j.Logger;
@@ -17,15 +18,6 @@ import java.util.List;
 public class ProductCategoryDaoJDBC implements ProductCategoryDao {
 
     private DataSource dataSource = new DatabaseManager().connect();
-    /*private static DataSource dataSource;
-
-    static {
-        try {
-            dataSource = new DatabaseManager().connect();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }*/
 
     private static final Logger logger = LoggerFactory.getLogger(ProductCategoryDaoJDBC.class);
 
@@ -49,6 +41,7 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
             }
             return new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
         } catch (SQLException e) {
+            OurLogger.log("Error while finding ProductCategories: " + e.getMessage());
             logger.info("Error while finding ProductCategories: " + e.getMessage());
             throw new RuntimeException(e);
         }
@@ -72,6 +65,7 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
             }
             return result;
         } catch (SQLException e) {
+            OurLogger.log("Error while finding ProductCategories: " + e.getMessage());
             logger.info("Error while finding ProductCategories: " + e.getMessage());
             throw new RuntimeException(e);
         }

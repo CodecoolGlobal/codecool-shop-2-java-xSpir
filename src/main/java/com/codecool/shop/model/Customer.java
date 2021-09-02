@@ -1,12 +1,12 @@
 package com.codecool.shop.model;
 
 public class Customer {
-    private String firstName;
-    private String lastName;
-    private String postCode;
-    private String city;
-    private String address;
-    private String email;
+    private final String firstName;
+    private final String lastName;
+    private final String postCode;
+    private final String city;
+    private final String address;
+    private final String email;
     private String cardNumber;
     private String username;
 

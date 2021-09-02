@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Logger {
+public class OurLogger {
     private static final String LOG_PATH = "shop.log";
     private static FileOutputStream out = null;
 

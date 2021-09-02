@@ -3,6 +3,7 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.controller.JDBC.DatabaseManager;
+import com.codecool.shop.controller.logger.OurLogger;
 import com.codecool.shop.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +64,7 @@ public class RegisterController extends HttpServlet {
 
 
         } catch (Exception se) {
+            OurLogger.log("Registration failed: " + se.getMessage());
             logger.info("Registration failed: " + se.getMessage());
             se.printStackTrace();
         }
